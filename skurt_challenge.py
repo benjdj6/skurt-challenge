@@ -58,7 +58,7 @@ def notify(subj, plain, html):
 		logging.info("Successfully sent email: {0}".format(subj))
 		return True
 	except smtplib.SMTPException:
-		logging.error("Error sending email with message", msg)
+		logging.error("Error sending email", smtplib.SMTPException)
 		return False
 
 #Checks if pos is contained within the range defined by poly
