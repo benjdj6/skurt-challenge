@@ -1,6 +1,6 @@
 sender = EMAIL_GOES_HERE
 email_pass = EMAIL_PASSWORD_GOES_HERE
-recipients = ["engineering@skurtapp.com","benjdjapps@gmail.com"]
+recipients = ["engineering@skurtapp.com"]
 
 oob_plain_msg = """
 Car #{0} is out of bounds. You can view it's last known location at {1}\n 
