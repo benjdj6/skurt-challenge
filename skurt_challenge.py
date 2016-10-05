@@ -57,7 +57,7 @@ def notify(subj, plain, html):
 		server.login(email_config.sender,email_config.email_pass)
 		server.sendmail(email_config.sender,email_config.recipients,msg.as_string())
 		server.close()        
-		logging.info("Successfully sent email: {0}".format(plain))
+		logging.info("Successfully sent email: {0}".format(subj))
 		return True
 	except smtplib.SMTPException:
 		logging.error("Error sending email with message", msg)
@@ -138,13 +138,11 @@ def polling(carIDs, defSleepTime, newDataSleepTime):
 				position = resp["features"][0]["geometry"]["coordinates"]
 				polygon = resp["features"][1]["geometry"]["coordinates"][0]
 
-				logging.debug(data)
-				logging.debug(oldLoc)
-				logging.debug(outCars)
-				logging.debug(insideRange(position, polygon))
-				
-				print carIDs[i]
-				print data
+				logging.debug("Server response: {0}".format(data))
+				logging.debug("Last known locations: {0}".format(oldLoc))
+				logging.debug("Cars currently out: {0}".format(outCars))
+				logging.debug("Is Car #{0} inside range: {1}".format(carIDs[i], 
+					insideRange(position, polygon)))
 
 				if carIDs[i] not in oldLoc or oldLoc[carIDs[i]] != position:
 					#When new data comes in reduce sleep time to 10 seconds for more

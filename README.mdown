@@ -7,7 +7,7 @@ Approach
 
 #### Email
 
-This program, by default, alerts as soon as a car is detected outside of the defined boundary and does not alert again until at least 5 minutes has passed to help reduce inbox clutter. This decision was made after I asked a Skurt employee for clarification on how frequently to send alert emails for the same car in the same out of bounds offense.
+This program, by default, alerts as soon as a car is detected outside of the defined boundary and does not alert again until at least 5 minutes have passed to help reduce inbox clutter. This decision was made after asking a Skurt employee for clarification on how frequently to send alert emails for the same car in the same out of bounds offense.
 
 The email generated has the Car ID # in the title, and a link in the body to a geojson.io map generated from the GeoJSON received from the car location API.
 
@@ -30,7 +30,7 @@ How To Use
 
 #### Set Up and Dependencies
 
-The only installed module is
+The only installed dependency is
 requests v2.11.1
 
 Before running you need to change the sender and email_pass values in email_config.py to match those of a valid gmail account. If you wish to use an SMTP service other than gmail, be sure to also change the following line in notify() to the appropriate server and port.
@@ -45,15 +45,15 @@ In order to run this program simply call
 
 This program has 2 options available
 <ul>
-	<li>-t Test Mode</li>
-	<li>-q Quiet Mode</li>
+	<li>-t, --test Test Mode</li>
+	<li>-q, --quiet Quiet Mode</li>
 </ul>
 
 Test Mode will only use Car ID 11.
 
 Quiet Mode reduces the amount of emails being sent so that only one is sent for each unique out of bounds offense (going from in bounds to out of bounds).
 
-More can be read about these options by running
+More can be read about these options using
 
 >python skurt_challenge.py -h
 
