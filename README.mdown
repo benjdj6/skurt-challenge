@@ -1,0 +1,66 @@
+Introduction
+============
+This program is a solution to the Skurt programming challenge, to build an alarm system that emails a specified address within 5 minutes of a car going out of bounds.
+
+Approach
+========
+
+#### Email
+
+This program, by default, alerts as soon as a car is detected outside of the defined boundary and does not alert again until at least 5 minutes has passed to help reduce inbox clutter. This decision was made after I asked a Skurt employee for clarification on how frequently to send alert emails for the same car, in the same out of bounds offense.
+
+The email generated has the Car ID # in the title, and a link in the body to a geojson.io map generated from the GeoJSON received from the car location API.
+
+#### Polling Frequency
+
+I decided to default to 120 seconds between each poll and 10 seconds after location data is updated for one of the cars. This decision was made after noticing that location data for all of the cars updates around the same time. With this assumption, the changing wait time allows for a worst case alert time of about 220 seconds after location data has updated.
+
+While the average request rate could be reduced and still meet the 5 minute alert requirement, I chose to leave room for latency in receiving data and sending the email. Plus, reducing the request rate leads to a less responsive alarm system, and potentially inaccurate alerts.
+
+The polling rate in Test Mode is much faster to produce data quickly.
+
+#### Point in Range
+
+To determine if a point is inside of the defined region I first check if the point is one of the vertices or if it lies on a boundary of the area. If neither of those conditions are met I go on to use ray casting.
+
+Ray casting checks if a line drawn from the point intersects any boundaries. If an even amount of boundaries are intersected (incl. 0), then the point is determined to be outside of the range. If there are an odd number of intersections then the point is inside of the range.
+
+How To Use
+==========
+
+#### Set Up and Dependencies
+
+The only installed module is
+requests v2.11.1
+
+Before running you need to change the sender and email_pass values in email_config.py to match those of a valid gmail account. If you wish to use an SMTP service other than gmail, be sure to also change the following line in notify() to the appropriate server and port.
+
+>server = smtplib.SMTP('smtp.gmail.com',587)
+
+#### Running
+
+In order to run this program simply call
+
+>python skurt_challenge.py
+
+This program has 2 options available
+<ul>
+	<li>-t Test Mode</li>
+	<li>-q Quiet Mode</li>
+</ul>
+
+Test Mode will only use Car ID 11.
+
+Quiet Mode reduces the amount of emails being sent, so that only one is sent for each unique out of bounds offense (going from in bounds to out of bounds).
+
+More can be read about these options by running
+
+>python skurt_challenge.py -h
+
+#### Testing
+
+In order to run tests use
+
+>python skurttest.py
+
+These tests cover the point in polygon detection algorithm and the email determination logic. Other portions of this program are not currently tested as most of the remainder is simply loading information from files, parsing the response from the location API, using already thoroughly tested modules, or has very simple logic.
