@@ -15,7 +15,7 @@ The email generated has the Car ID # in the title, and a link in the body to a g
 
 I decided to default to 120 seconds between each poll and 10 seconds after location data is updated for one of the cars. This is because location data for all of the cars updates around the same time. With this assumption the changing wait time allows for a worst case alert time of about 210 seconds after location data has updated.
 
->(120s + 9 * 10s = 210s)
+>120s + 9 * 10s = 210s
 
 While the average request rate could be reduced and still meet the 5 minute alert requirement, I chose to leave room for latency in receiving data and sending the email. Plus, reducing the request rate leads to a less responsive alarm system and potentially inaccurate alerts.
 
