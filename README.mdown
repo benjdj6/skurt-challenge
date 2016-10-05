@@ -7,15 +7,15 @@ Approach
 
 #### Email
 
-This program, by default, alerts as soon as a car is detected outside of the defined boundary and does not alert again until at least 5 minutes has passed to help reduce inbox clutter. This decision was made after I asked a Skurt employee for clarification on how frequently to send alert emails for the same car, in the same out of bounds offense.
+This program, by default, alerts as soon as a car is detected outside of the defined boundary and does not alert again until at least 5 minutes has passed to help reduce inbox clutter. This decision was made after I asked a Skurt employee for clarification on how frequently to send alert emails for the same car in the same out of bounds offense.
 
 The email generated has the Car ID # in the title, and a link in the body to a geojson.io map generated from the GeoJSON received from the car location API.
 
 #### Polling Frequency
 
-I decided to default to 120 seconds between each poll and 10 seconds after location data is updated for one of the cars. This decision was made after noticing that location data for all of the cars updates around the same time. With this assumption, the changing wait time allows for a worst case alert time of about 220 seconds after location data has updated.
+I decided to default to 120 seconds between each poll and 10 seconds after location data is updated for one of the cars. This is because location data for all of the cars updates around the same time. With this assumption the changing wait time allows for a worst case alert time of about 220 seconds after location data has updated.
 
-While the average request rate could be reduced and still meet the 5 minute alert requirement, I chose to leave room for latency in receiving data and sending the email. Plus, reducing the request rate leads to a less responsive alarm system, and potentially inaccurate alerts.
+While the average request rate could be reduced and still meet the 5 minute alert requirement, I chose to leave room for latency in receiving data and sending the email. Plus, reducing the request rate leads to a less responsive alarm system and potentially inaccurate alerts.
 
 The polling rate in Test Mode is much faster to produce data quickly.
 
@@ -51,7 +51,7 @@ This program has 2 options available
 
 Test Mode will only use Car ID 11.
 
-Quiet Mode reduces the amount of emails being sent, so that only one is sent for each unique out of bounds offense (going from in bounds to out of bounds).
+Quiet Mode reduces the amount of emails being sent so that only one is sent for each unique out of bounds offense (going from in bounds to out of bounds).
 
 More can be read about these options by running
 
