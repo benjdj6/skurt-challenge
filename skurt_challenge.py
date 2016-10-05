@@ -11,10 +11,8 @@ from optparse import OptionParser
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-#TODO triple check over spec
-
 #Written by Ben Johnston (github: benjdj6)
-#Last Edited: 4 Oct, 2016
+#Last Edited: 5 Oct, 2016
 
 FORMAT = '%(asctime)-15s %(message)s'
 logging.basicConfig(filename="skurt-challenge.log",level=logging.DEBUG,format=FORMAT)
@@ -115,7 +113,7 @@ def shouldSendEmail(carID):
 	else:
 		return False
 
-def polling(carIDs, defSleepTime, newDataSleepTime):
+def polling(carIDs, defSleepTime=120, newDataSleepTime=10):
 	i = 0
 	while True:
 		try:
@@ -180,7 +178,7 @@ def main():
 		polling([11], 5, 5)
 	else:
 		print ("Polling...")
-		polling([1,2,3,4,5,6,7,8,9,10], 120, 10)
+		polling([1,2,3,4,5,6,7,8,9,10])
 
 if __name__ == "__main__":
     main()

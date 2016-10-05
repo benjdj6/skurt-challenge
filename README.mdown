@@ -13,24 +13,28 @@ The email generated has the Car ID # in the title, and a link in the body to a g
 
 #### Polling Frequency
 
-I decided to default to 120 seconds between each poll and 10 seconds after location data is updated for one of the cars. This is because location data for all of the cars updates around the same time. With this assumption the changing wait time allows for a worst case alert time of about 220 seconds after location data has updated.
+I decided to default to 120 seconds between each poll and 10 seconds after location data is updated for one of the cars. This is because location data for all of the cars updates around the same time. With this assumption the changing wait time allows for a worst case alert time of about 210 seconds after location data has updated.
+
+>(120s + 9 * 10s = 210s)
 
 While the average request rate could be reduced and still meet the 5 minute alert requirement, I chose to leave room for latency in receiving data and sending the email. Plus, reducing the request rate leads to a less responsive alarm system and potentially inaccurate alerts.
 
 The polling rate in Test Mode is much faster to produce data quickly.
 
+If larger sets of carIDs are to be used, the sleep settings can be overwritten with times that better fit the new data by passing them into the polling function.
+
 #### Point in Range
 
-To determine if a point is inside of the defined region I first check if the point is one of the vertices or if it lies on a boundary of the area. If neither of those conditions are met I go on to use ray casting.
+To determine if a point is inside of the defined region I first check if the point is one of the vertices or if it lies on a boundary of the area. If neither of those conditions are met I go on to use the even-odd rule.
 
-Ray casting checks if a line drawn from the point intersects any boundaries. If an even amount of boundaries are intersected (incl. 0), then the point is determined to be outside of the range. If there are an odd number of intersections then the point is inside of the range.
+The even-odd rule checks if a line drawn from the point intersects any boundaries. If an even amount of boundaries are intersected (incl. 0), then the point is determined to be outside of the range. If there are an odd number of intersections then the point is inside of the range.
 
 How To Use
 ==========
 
 #### Set Up and Dependencies
 
-The only installed dependency is
+The only non-standard library dependency is
 requests v2.11.1
 
 Before running you need to change the sender and email_pass values in email_config.py to match those of a valid gmail account. If you wish to use an SMTP service other than gmail, be sure to also change the following line in notify() to the appropriate server and port.

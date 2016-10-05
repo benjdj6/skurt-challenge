@@ -1,3 +1,6 @@
+#Written by Ben Johnston (github: benjdj6)
+#Last Edited: 5 Oct, 2016
+
 sender = "EMAIL_GOES_HERE"
 email_pass = "EMAIL_PASSWORD_GOES_HERE"
 recipients = ["engineering@skurtapp.com"]

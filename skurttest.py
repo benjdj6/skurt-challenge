@@ -2,6 +2,9 @@ import skurt_challenge
 import unittest
 import time
 
+#Written by Ben Johnston (github: benjdj6)
+#Last Edited: 5 Oct, 2016
+
 class TestInsideRange(unittest.TestCase):
 	
 	#Tests that insideRange returns True when the position is set
