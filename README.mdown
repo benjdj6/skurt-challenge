@@ -21,7 +21,7 @@ While the average request rate could be reduced and still meet the 5 minute aler
 
 The polling rate in Test Mode is much faster to produce data quickly.
 
-If larger sets of carIDs are to be used, the sleep settings can be overwritten with times that better fit the new data by passing them into the polling function.
+If larger sets of Car IDs are to be used, the sleep settings can be overwritten with times that better fit the new data by passing them into the polling function.
 
 #### Point in Range
 
