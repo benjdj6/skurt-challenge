@@ -1,5 +1,5 @@
-sender = EMAIL_GOES_HERE
-email_pass = EMAIL_PASSWORD_GOES_HERE
+sender = "EMAIL_GOES_HERE"
+email_pass = "EMAIL_PASSWORD_GOES_HERE"
 recipients = ["engineering@skurtapp.com"]
 
 oob_plain_msg = """
